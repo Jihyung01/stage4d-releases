@@ -135,6 +135,26 @@ async function firstWindow() {
   await expect(page.locator("canvas").first()).toBeVisible();
   return page;
 }
+async function requireWebGL(page) {
+  let state;
+  await expect.poll(async () => {
+    state = await page.locator("canvas").first().evaluate(canvas => {
+      const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
+      if (!gl) return { ready: false, reason: "No WebGL context" };
+      const debug = gl.getExtension("WEBGL_debug_renderer_info");
+      return {
+        ready: !gl.isContextLost() && gl.drawingBufferWidth > 100 && gl.drawingBufferHeight > 100,
+        contextLost: gl.isContextLost(),
+        version: gl.getParameter(gl.VERSION),
+        renderer: gl.getParameter(debug ? debug.UNMASKED_RENDERER_WEBGL : gl.RENDERER),
+        drawingBufferWidth: gl.drawingBufferWidth,
+        drawingBufferHeight: gl.drawingBufferHeight,
+      };
+    });
+    return state.ready;
+  }, { timeout: 15000, message: "The actual stage canvas must have a live WebGL context" }).toBe(true);
+  return state;
+}
 async function exportProject(page, name) {
   const file = path.join(dir, name);
   // Select the temporary save location through Electron's download API. This
@@ -262,6 +282,9 @@ try {
   results.push(
     "repeated launch exits and restores the existing editor without changing its project",
   );
+  execution.webgl = await requireWebGL(page);
+  await page.screenshot({ path: path.join(reportDirectory, "studio-webgl.png") });
+  results.push("Stage canvas has a live WebGL context with a nonzero drawing buffer; actual renderer is recorded");
   const unarmed = await page.evaluate(
     (port) =>
       window.stage4d.sendOsc({
@@ -344,6 +367,7 @@ try {
   await page.evaluate(() => window.stage4d.arm(true));
   await page.reload({ waitUntil: "domcontentloaded" });
   await page.waitForSelector("canvas");
+  execution.webglAfterReload = await requireWebGL(page);
   assert.equal(
     await page
       .getByRole("textbox", { name: "공연 이름", exact: true })

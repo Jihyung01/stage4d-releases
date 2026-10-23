@@ -8,7 +8,7 @@ The two jobs use standard `windows-2025` and `macos-15-intel` runners. Standard 
 
 ## What is tested
 
-- The downloaded binary's packaged version, native OS/architecture, preload bridge, production menu, visible canvas and absence of renderer errors.
+- The downloaded binary's packaged version, native OS/architecture, preload bridge, production menu and absence of renderer errors. The actual stage canvas must have a live WebGL context with a nonzero drawing buffer before and after reload; its renderer name and a studio screenshot are recorded.
 - An isolated user profile, JSON import and saved project, repeated launch returning to the existing window, reload and full process restart.
 - Actual loopback UDP packets: preview sends none, GO pauses at the manual cue boundary, the next GO sends each remaining cue once, and STOP/reload/restart disarm output. A non-local destination is rejected.
 - Synthetic audio/video decoding and advancing playback; closing previews releases the source. PDF text imports and the bundled PDF renderer displays a page.
