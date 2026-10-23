@@ -36,10 +36,12 @@
   "verification": {
     "macArm64": "Apple Silicon Mac에서 실제 0.4.0 설치 앱 실행·저장·PDF·GO·UDP 출력과 0.3.0 프로젝트·미디어 보존을 확인했습니다. 새 컴퓨터에서의 설치 및 실제 콘솔 연결 검증은 남아 있습니다.",
     "macX64": "Intel용 설치 파일을 제작하고 체크섬을 확인했습니다. 0.4.0의 실제 Intel 실행은 아직 검증하지 않았습니다. 기존 버전의 Intel 가상 머신 WebGL 초기화 문제도 남아 있습니다.",
-    "windowsX64": "Windows x64 설치 파일 제작·체크섬 검사를 완료했습니다. 0.4.0 공개 설치판의 Windows 가상 머신 설치·실행·제거 검사를 진행할 예정입니다. 현재 문구는 Windows 실행 통과를 뜻하지 않습니다.",
+    "windowsX64": "공개 0.4.0 EXE를 Windows Server 2025 x64 가상 머신에서 내려받아 해시·설치·실행·WebGL·저장·미디어·OSC·MA2 패킷·제거 검사를 통과했습니다. 소프트웨어 렌더링 환경의 결과이며 실제 Windows 10·11 GPU·오디오·콘솔 연결 검증은 남아 있습니다.",
     "google": "Google 연결은 유지됩니다. 실제 소유자 계정 로그인·복귀·세션·로그아웃은 0.3.0에서 검증했으며 0.4.0에서 같은 계정으로 다시 확인하지는 않았습니다.",
     "integrations": "QLab OSC 매핑, MA2 UDP 패킷 송신, 합성 MTC 입력을 검사했습니다. 실제 QLab·grandMA2·MIDI 인터페이스 연결은 미검증입니다.",
-    "evidence": []
+    "evidence": [
+      "https://github.com/Jihyung01/stage4d-releases/actions/runs/39940163413"
+    ]
   },
   "signing": "정식 배포 서명·Apple 공증 미완료. 운영체제 경고 또는 실행 차단이 있을 수 있습니다."
 }
