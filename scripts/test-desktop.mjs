@@ -514,10 +514,16 @@ try {
   );
 } catch (e) {
   if (app && execution) {
-    execution.gpuAtFailure = await app.evaluate(async ({ app }) => {
-      try { return await app.getGPUInfo("complete"); }
-      catch (error) { return { error: String(error) }; }
-    }).catch(error => ({ error: String(error) }));
+    let diagnosticTimer;
+    try {
+      execution.gpuAtFailure = await Promise.race([
+        app.evaluate(async ({ app }) => {
+          try { return await app.getGPUInfo("complete"); }
+          catch (error) { return { error: String(error) }; }
+        }).catch(error => ({ error: String(error) })),
+        new Promise(resolve => { diagnosticTimer = setTimeout(() => resolve({ error: "GPU diagnostic request timed out after 5 seconds" }), 5000); }),
+      ]);
+    } finally { clearTimeout(diagnosticTimer); }
   }
   console.error(e);
   console.error({ results, packets, errors });
