@@ -128,6 +128,8 @@ function Invoke-InstallationCycle([string]$Directory, [switch]$TestDesktop, [swi
       $env:STAGE4D_EXPECTED_VERSION = $ExpectedVersion
       & $node scripts/test-desktop.mjs
       if ($LASTEXITCODE -ne 0) { throw "Installed application checks exited with $LASTEXITCODE." }
+      & $node scripts/test-ma2.mjs
+      if ($LASTEXITCODE -ne 0) { throw "Installed MA2 packet checks exited with $LASTEXITCODE." }
     }
 
     if ($TestReplacementOwner) {
