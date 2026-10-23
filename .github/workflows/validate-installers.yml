@@ -1,0 +1,75 @@
+name: Validate published installers
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: Native installer platform to validate
+        type: choice
+        required: true
+        default: all
+        options: [all, windows, macos]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: binary-validation-${{ github.workflow }}-${{ inputs.platform }}
+  cancel-in-progress: false
+
+jobs:
+  windows:
+    if: inputs.platform == 'all' || inputs.platform == 'windows'
+    runs-on: windows-2025
+    timeout-minutes: 30
+    env:
+      STAGE4D_EXPECTED_ARCH: x64
+      STAGE4D_REQUIRE_NATIVE: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22.22.3'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Download public setup and verify pinned SHA-256
+        run: node scripts/download-release.mjs windows
+      - name: Install, exercise the real application, and uninstall
+        shell: pwsh
+        run: ./scripts/test-windows-install.ps1
+      - name: Preserve public synthetic test reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: stage4d-0.3.0-windows-native-validation
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 14
+
+  macos-intel:
+    if: inputs.platform == 'all' || inputs.platform == 'macos'
+    runs-on: macos-15-intel
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22.22.3'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Download public Intel DMG and verify pinned SHA-256
+        run: node scripts/download-release.mjs macos-intel
+      - name: Mount, copy, and exercise the native Intel application
+        run: bash scripts/test-macos-install.sh
+      - name: Preserve public synthetic test reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: stage4d-0.3.0-macos-intel-native-validation
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 14

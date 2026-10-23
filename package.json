@@ -1,0 +1,17 @@
+{
+  "name": "stage4d-release-validation",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "Independent black-box validation of published stage4d installers",
+  "engines": { "node": "22.22.3" },
+  "scripts": {
+    "test": "node scripts/test-desktop.mjs",
+    "download:windows": "node scripts/download-release.mjs windows",
+    "download:macos-intel": "node scripts/download-release.mjs macos-intel"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "fflate": "0.8.2"
+  }
+}

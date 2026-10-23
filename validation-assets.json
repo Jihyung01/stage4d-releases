@@ -1,0 +1,37 @@
+{
+  "application": "stage4d",
+  "version": "0.3.0",
+  "channel": "unsigned-testing",
+  "releaseUrl": "https://github.com/Jihyung01/stage4d-releases/releases/tag/v0.3.0",
+  "artifacts": [
+    {
+      "name": "stage4d-0.3.0-win-x64-setup.exe",
+      "bytes": 113256184,
+      "sha256": "595bc975dfb692781159f344c69b626449bbd5dea9292f6ed4c1aa1d01afeabe",
+      "platformLabel": "Windows x64",
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.3.0/stage4d-0.3.0-win-x64-setup.exe"
+    },
+    {
+      "name": "stage4d-0.3.0-mac-arm64.dmg",
+      "bytes": 120469527,
+      "sha256": "0268a251a830352928e35bb2cea05e56c3e1abd2166324bd3d5a24902827ab0d",
+      "platformLabel": "Mac — Apple Silicon (M series)",
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.3.0/stage4d-0.3.0-mac-arm64.dmg"
+    },
+    {
+      "name": "stage4d-0.3.0-mac-x64.dmg",
+      "bytes": 127885187,
+      "sha256": "ab7e1c1d2db715f47be21f35316788ba5762ef8ad4e65df397f776d5ccae00ca",
+      "platformLabel": "Mac — Intel",
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.3.0/stage4d-0.3.0-mac-x64.dmg"
+    }
+  ],
+  "signInRequired": false,
+  "socialSignInAvailable": false,
+  "verification": {
+    "macArm64": "Packaged application smoke tests passed on developer Mac; clean-machine verification remains.",
+    "macX64": "Built; native Intel execution not verified.",
+    "windowsX64": "Built; real Windows installation and execution not verified."
+  },
+  "signing": "Developer distribution signing and Apple notarization are not complete. OS warnings or blocking may occur."
+}
