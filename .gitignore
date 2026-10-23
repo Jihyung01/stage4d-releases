@@ -3,3 +3,6 @@ download/
 reports/
 *.log
 .DS_Store
+store/node_modules/
+store/work/
+store/out/

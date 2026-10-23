@@ -39,3 +39,7 @@ Windows CI는 CPU 소프트웨어 렌더링(SwiftShader)을 사용합니다. 이
 이 저장소에는 공개 설치 파일과 설치 검증 자료를 게시합니다. 프로그램 개발 소스는 별도 비공개 저장소에서 관리합니다.
 
 문의: tbvj123wlgud@gmail.com
+
+## Microsoft Store package
+
+`Build Microsoft Store package` (manual workflow) downloads a published Windows x64 installer, verifies its size and SHA-256 against the release `release-info.json`, extracts the application, and builds an **unsigned** AppX with the Partner Center identity given as inputs. The Store re-signs accepted packages, so no certificate or secret is involved. The AppX is kept only as an Actions artifact for upload to Partner Center; it is not a download for users.

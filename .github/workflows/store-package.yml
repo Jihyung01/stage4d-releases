@@ -1,0 +1,67 @@
+name: Build Microsoft Store package
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Published stage4d version to package (its Windows x64 installer is the source)
+        required: true
+        default: '0.5.0'
+      store_version:
+        description: Store package version Major.Minor.Patch.0 (Major ≥ 1, higher than any previous submission)
+        required: true
+        default: '1.5.0.0'
+      identity_name:
+        description: Partner Center › Product identity › Package/Identity/Name
+        required: true
+      publisher:
+        description: Partner Center › Product identity › Package/Identity/Publisher (CN=…)
+        required: true
+      publisher_display_name:
+        description: Partner Center › Product identity › Package/Properties/PublisherDisplayName
+        required: true
+      display_name:
+        description: Reserved app name (leave as stage4d unless Partner Center shows another)
+        required: true
+        default: stage4d
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store-package-${{ inputs.version }}
+  cancel-in-progress: false
+
+jobs:
+  appx:
+    runs-on: windows-2025
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22.22.3'
+      - name: Install pinned electron-builder
+        run: npm install --prefix store --no-audit --no-fund
+      - name: Build and inspect the unsigned Store AppX
+        env:
+          STAGE4D_VERSION: ${{ inputs.version }}
+          STORE_VERSION: ${{ inputs.store_version }}
+          STORE_IDENTITY_NAME: ${{ inputs.identity_name }}
+          STORE_PUBLISHER: ${{ inputs.publisher }}
+          STORE_PUBLISHER_DISPLAY_NAME: ${{ inputs.publisher_display_name }}
+          STORE_DISPLAY_NAME: ${{ inputs.display_name }}
+        run: node store/build.mjs
+      - name: Keep the Store submission package (Actions artifact, not a public release)
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: stage4d-${{ inputs.version }}-store-x64-${{ github.run_number }}
+          path: |
+            store/out/*.appx
+            store/out/AppxManifest.xml
+            store/out/SHA256SUMS.txt
+            store/out/store-package.json
+          if-no-files-found: error
+          retention-days: 30
