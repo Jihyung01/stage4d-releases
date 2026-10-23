@@ -1,37 +1,45 @@
 {
   "application": "stage4d",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "channel": "unsigned-testing",
-  "releaseUrl": "https://github.com/Jihyung01/stage4d-releases/releases/tag/v0.3.0",
+  "generatedAt": "2026-10-23T10:30:55.292Z",
+  "note": "Checksums verify file integrity. They do not prove publisher identity, notarization, or testing on a particular operating system.",
   "artifacts": [
     {
-      "name": "stage4d-0.3.0-win-x64-setup.exe",
-      "bytes": 113256184,
-      "sha256": "595bc975dfb692781159f344c69b626449bbd5dea9292f6ed4c1aa1d01afeabe",
-      "platformLabel": "Windows x64",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.3.0/stage4d-0.3.0-win-x64-setup.exe"
+      "name": "stage4d-0.4.0-mac-arm64.dmg",
+      "bytes": 120488417,
+      "sha256": "f233d79f9d05cac310572fb6d18dd01b70abad5ca49c4bbf8d2ce873ee5295a7",
+      "platformLabel": "Mac — Apple Silicon",
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.4.0/stage4d-0.4.0-mac-arm64.dmg"
     },
     {
-      "name": "stage4d-0.3.0-mac-arm64.dmg",
-      "bytes": 120469527,
-      "sha256": "0268a251a830352928e35bb2cea05e56c3e1abd2166324bd3d5a24902827ab0d",
-      "platformLabel": "Mac — Apple Silicon (M series)",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.3.0/stage4d-0.3.0-mac-arm64.dmg"
-    },
-    {
-      "name": "stage4d-0.3.0-mac-x64.dmg",
-      "bytes": 127885187,
-      "sha256": "ab7e1c1d2db715f47be21f35316788ba5762ef8ad4e65df397f776d5ccae00ca",
+      "name": "stage4d-0.4.0-mac-x64.dmg",
+      "bytes": 127887174,
+      "sha256": "6e45652d063d0040c2ef537a61d425f719d4b0479b9e5129514fe3504b1418a7",
       "platformLabel": "Mac — Intel",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.3.0/stage4d-0.3.0-mac-x64.dmg"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.4.0/stage4d-0.4.0-mac-x64.dmg"
+    },
+    {
+      "name": "stage4d-0.4.0-win-x64-setup.exe",
+      "bytes": 113267701,
+      "sha256": "603bb9e340e20107951986cb745cf3ee7addde9774678d70ad94ee3538d9d7ba",
+      "platformLabel": "Windows x64",
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.4.0/stage4d-0.4.0-win-x64-setup.exe"
     }
   ],
+  "releaseUrl": "https://github.com/Jihyung01/stage4d-releases/releases/tag/v0.4.0",
   "signInRequired": false,
-  "socialSignInAvailable": false,
+  "socialSignInAvailable": true,
+  "socialSignInProviders": [
+    "google"
+  ],
   "verification": {
-    "macArm64": "Packaged application smoke tests passed on developer Mac; clean-machine verification remains.",
-    "macX64": "Built; native Intel execution not verified.",
-    "windowsX64": "Built; real Windows installation and execution not verified."
+    "macArm64": "Apple Silicon Mac에서 실제 0.4.0 설치 앱 실행·저장·PDF·GO·UDP 출력과 0.3.0 프로젝트·미디어 보존을 확인했습니다. 새 컴퓨터에서의 설치 및 실제 콘솔 연결 검증은 남아 있습니다.",
+    "macX64": "Intel용 설치 파일을 제작하고 체크섬을 확인했습니다. 0.4.0의 실제 Intel 실행은 아직 검증하지 않았습니다. 기존 버전의 Intel 가상 머신 WebGL 초기화 문제도 남아 있습니다.",
+    "windowsX64": "Windows x64 설치 파일 제작·체크섬 검사를 완료했습니다. 0.4.0 공개 설치판의 Windows 가상 머신 설치·실행·제거 검사를 진행할 예정입니다. 현재 문구는 Windows 실행 통과를 뜻하지 않습니다.",
+    "google": "Google 연결은 유지됩니다. 실제 소유자 계정 로그인·복귀·세션·로그아웃은 0.3.0에서 검증했으며 0.4.0에서 같은 계정으로 다시 확인하지는 않았습니다.",
+    "integrations": "QLab OSC 매핑, MA2 UDP 패킷 송신, 합성 MTC 입력을 검사했습니다. 실제 QLab·grandMA2·MIDI 인터페이스 연결은 미검증입니다.",
+    "evidence": []
   },
-  "signing": "Developer distribution signing and Apple notarization are not complete. OS warnings or blocking may occur."
+  "signing": "정식 배포 서명·Apple 공증 미완료. 운영체제 경고 또는 실행 차단이 있을 수 있습니다."
 }

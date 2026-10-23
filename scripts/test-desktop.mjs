@@ -12,7 +12,7 @@ import assert from "node:assert/strict";
 // Only an explicitly selected installed executable is accepted. No app source,
 // package manager Electron binary, development server or private fixture is used.
 const packaged = true;
-const expectedVersion = process.env.STAGE4D_EXPECTED_VERSION || "0.3.0";
+const expectedVersion = process.env.STAGE4D_EXPECTED_VERSION || "0.4.0";
 if (!process.env.STAGE4D_EXECUTABLE || !path.isAbsolute(process.env.STAGE4D_EXECUTABLE)) throw new Error("STAGE4D_EXECUTABLE must identify an installed absolute executable path");
 const executablePath = process.env.STAGE4D_EXECUTABLE;
 const reportDirectory = path.resolve(process.env.STAGE4D_REPORT_DIR || "reports");

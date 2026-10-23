@@ -1,9 +1,9 @@
 #Requires -Version 7.0
 [CmdletBinding()]
 param(
-  [string]$InstallerPath = (Join-Path $PSScriptRoot "..\download\stage4d-0.3.0-win-x64-setup.exe"),
+  [string]$InstallerPath = (Join-Path $PSScriptRoot "..\download\stage4d-0.4.0-win-x64-setup.exe"),
   [ValidatePattern('^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$')]
-  [string]$ExpectedVersion = "0.3.0"
+  [string]$ExpectedVersion = "0.4.0"
 )
 
 Set-StrictMode -Version Latest

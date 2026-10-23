@@ -2,7 +2,7 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
-installer="${1:-download/stage4d-0.3.0-mac-x64.dmg}"
+installer="${1:-download/stage4d-0.4.0-mac-x64.dmg}"
 expected_arch="${STAGE4D_EXPECTED_ARCH:-x64}"
 [[ "$(uname -s)" == Darwin ]] || { echo 'This test requires macOS.' >&2; exit 1; }
 case "$(uname -m)" in
@@ -35,9 +35,9 @@ mounted=0
 codesign --verify --deep --strict --verbose=2 "$installed_path"
 codesign --display --verbose=2 "$installed_path" 2>reports/macos-signature.txt
 export STAGE4D_EXECUTABLE="$installed_path/Contents/MacOS/stage4d"
-export STAGE4D_EXPECTED_VERSION=0.3.0
+export STAGE4D_EXPECTED_VERSION=0.4.0
 export STAGE4D_EXPECTED_ARCH="$expected_arch"
 export STAGE4D_REQUIRE_NATIVE=1
 node scripts/test-desktop.mjs
 cleanup
-node --input-type=module -e 'import { writeFile } from "node:fs/promises"; await writeFile("reports/macos-install.json", JSON.stringify({ success: true, version: "0.3.0", host: process.platform, architecture: process.arch, dmgVerified: true, copiedOutOfDmg: true, existingBundleSealVerified: true, notarizationVerified: false, gatekeeperApprovalTested: false, cleanup: "Temporary copied application removed after the test" }, null, 2));'
+node --input-type=module -e 'import { writeFile } from "node:fs/promises"; await writeFile("reports/macos-install.json", JSON.stringify({ success: true, version: "0.4.0", host: process.platform, architecture: process.arch, dmgVerified: true, copiedOutOfDmg: true, existingBundleSealVerified: true, notarizationVerified: false, gatekeeperApprovalTested: false, cleanup: "Temporary copied application removed after the test" }, null, 2));'
