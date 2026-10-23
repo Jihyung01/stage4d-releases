@@ -211,7 +211,9 @@ try {
   if (-not (Test-Path -LiteralPath $InstallerPath -PathType Leaf)) { throw "Installer not found: $InstallerPath" }
   if (-not (Test-Path -LiteralPath $harness -PathType Leaf)) { throw "Public desktop harness not found: $harness" }
   $installer = (Resolve-Path -LiteralPath $InstallerPath).ProviderPath
-  $node = (Get-Command node -CommandType Application -ErrorAction Stop).Source
+  # Hosted Windows images can expose multiple node.exe installations. Use the
+  # first PATH match (the version selected by setup-node), never a joined array.
+  $node = (Get-Command node -CommandType Application -ErrorAction Stop | Select-Object -First 1).Source
   Assert-CleanTestAccount
   $checks.Add("No existing stage4d installation, process or URL protocol registration")
 
