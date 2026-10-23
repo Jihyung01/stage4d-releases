@@ -119,9 +119,10 @@ const project = {
 // https://chromium.googlesource.com/chromium/src/+/main/docs/gpu/swiftshader.md
 const softwareRendering = process.env.STAGE4D_SOFTWARE_RENDERING === "1";
 const graphicsArgs = softwareRendering ? ["--use-gl=angle", "--use-angle=swiftshader"] : ["--enable-unsafe-swiftshader"];
+const diagnosticArgs = ["--enable-logging=file", `--log-file=${path.join(reportDirectory, "chromium-diagnostics.txt")}`];
 const launchArgs = [`--user-data-dir=${dir}`, ...graphicsArgs];
 let app;
-const launch = (profile = dir) => electron.launch({ executablePath, args: [`--user-data-dir=${profile}`, ...graphicsArgs], env: launchEnvironment });
+const launch = (profile = dir) => electron.launch({ executablePath, args: [`--user-data-dir=${profile}`, ...graphicsArgs, ...diagnosticArgs], env: launchEnvironment });
 const results = [],
   errors = [];
 let execution;
@@ -137,6 +138,7 @@ async function firstWindow() {
 }
 async function requireWebGL(page) {
   let state;
+  try {
   await expect.poll(async () => {
     state = await page.locator("canvas").first().evaluate(canvas => {
       const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
@@ -153,6 +155,10 @@ async function requireWebGL(page) {
     });
     return state.ready;
   }, { timeout: 15000, message: "The actual stage canvas must have a live WebGL context" }).toBe(true);
+  } catch (error) {
+    error.message += `\nLast WebGL state: ${JSON.stringify(state)}`;
+    throw error;
+  }
   return state;
 }
 async function exportProject(page, name) {
@@ -507,6 +513,12 @@ try {
     ),
   );
 } catch (e) {
+  if (app && execution) {
+    execution.gpuAtFailure = await app.evaluate(async ({ app }) => {
+      try { return await app.getGPUInfo("complete"); }
+      catch (error) { return { error: String(error) }; }
+    }).catch(error => ({ error: String(error) }));
+  }
   console.error(e);
   console.error({ results, packets, errors });
   const windows = app?.windows() || [];
