@@ -102,8 +102,12 @@ await mkdir(project, { recursive: true });
 await writeFile(path.join(project, "package.json"), JSON.stringify({ name: "stage4d", productName: "stage4d", version: appVersion, description: "stage4d performance studio", author: publisherDisplayName }, null, 2));
 const out = path.join(here, "out");
 await rm(out, { recursive: true, force: true });
+// The prepackaged app carries no node_modules; give electron-builder the Electron runtime it was built with.
+const electronVersion = (env.STAGE4D_ELECTRON_VERSION ?? "").trim() || "45.0.0";
+if (!/^\d+\.\d+\.\d+$/.test(electronVersion)) throw new Error("STAGE4D_ELECTRON_VERSION must look like 45.0.0.");
 const config = {
   appId: "com.stage4d.studio",
+  electronVersion,
   productName: "stage4d",
   directories: { output: out, buildResources: resources },
   publish: null,
