@@ -13,6 +13,9 @@ on:
 permissions:
   contents: read
 
+env:
+  STAGE4D_SOFTWARE_RENDERING: '1'
+
 concurrency:
   group: binary-validation-${{ github.workflow }}-${{ inputs.platform }}
   cancel-in-progress: false

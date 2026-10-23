@@ -114,11 +114,14 @@ const project = {
     },
   ],
 };
-// Permit Chromium's software WebGL fallback on hosted runners. This does not
-// certify physical GPU quality; the actual feature status is recorded below.
-const launchArgs = [`--user-data-dir=${dir}`, "--enable-unsafe-swiftshader"];
+// Hosted virtual machines may have no supported GPU. Explicit SwANGLE exercises
+// real WebGL rendering on the CPU; it never certifies physical GPU performance.
+// https://chromium.googlesource.com/chromium/src/+/main/docs/gpu/swiftshader.md
+const softwareRendering = process.env.STAGE4D_SOFTWARE_RENDERING === "1";
+const graphicsArgs = softwareRendering ? ["--use-gl=angle", "--use-angle=swiftshader"] : ["--enable-unsafe-swiftshader"];
+const launchArgs = [`--user-data-dir=${dir}`, ...graphicsArgs];
 let app;
-const launch = (profile = dir) => electron.launch({ executablePath, args: [`--user-data-dir=${profile}`, "--enable-unsafe-swiftshader"], env: launchEnvironment });
+const launch = (profile = dir) => electron.launch({ executablePath, args: [`--user-data-dir=${profile}`, ...graphicsArgs], env: launchEnvironment });
 const results = [],
   errors = [];
 let execution;
@@ -190,6 +193,8 @@ try {
     );
   }
   let page = await firstWindow();
+  execution.renderingMode = softwareRendering ? "explicit-swiftshader-cpu" : "default-with-software-fallback-permitted";
+  execution.gpu = await app.evaluate(({ app }) => app.getGPUFeatureStatus());
   assert.ok(await page.evaluate(() => Boolean(window.stage4d)));
   const userData = await app.evaluate(({ app }) => app.getPath("userData"));
   assert.equal(await realpath(userData), await realpath(dir));
