@@ -17,7 +17,8 @@ const need = (name, max) => {
 };
 if (process.platform !== "win32" || process.arch !== "x64") throw new Error("Build the Store AppX on Windows x64.");
 const appVersion = need("STAGE4D_VERSION", 23);
-if (!/^\d+\.\d+\.\d+$/.test(appVersion)) throw new Error("STAGE4D_VERSION must be the released app version, e.g. 0.5.0.");
+// A prerelease (0.9.0-beta.1) is packaged as published; the Store version is STORE_VERSION below.
+if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z]+(?:\.[0-9A-Za-z]+)*)?$/.test(appVersion)) throw new Error("STAGE4D_VERSION must be the released app version, e.g. 0.5.0 or 0.9.0-beta.1.");
 const identityName = need("STORE_IDENTITY_NAME", 50);
 if (!/^[A-Za-z0-9.-]{3,50}$/.test(identityName)) throw new Error("STORE_IDENTITY_NAME must be the exact Package/Identity/Name.");
 const publisher = need("STORE_PUBLISHER", 8192);
