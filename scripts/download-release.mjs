@@ -6,16 +6,18 @@ import { pipeline } from "node:stream/promises";
 import path from "node:path";
 
 const release = JSON.parse(await readFile(new URL("../validation-assets.json", import.meta.url), "utf8"));
+const version = release.version;
+if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z]+(?:\.[0-9A-Za-z]+)*)?$/.test(version)) throw new Error("Invalid pinned version");
 const filenames = {
-  windows: "stage4d-0.4.0-win-x64-setup.exe",
-  "macos-intel": "stage4d-0.4.0-mac-x64.dmg",
-  "macos-arm64": "stage4d-0.4.0-mac-arm64.dmg",
+  windows: `stage4d-${version}-win-x64-setup.exe`,
+  "macos-intel": `stage4d-${version}-mac-x64.dmg`,
+  "macos-arm64": `stage4d-${version}-mac-arm64.dmg`,
 };
 const target = process.argv[2], filename = filenames[target];
 if (!filename) throw new Error("Expected windows, macos-intel or macos-arm64");
 const artifact = release.artifacts.find(item => item.name === filename);
 if (!artifact || !/^[a-f0-9]{64}$/.test(artifact.sha256) || !Number.isSafeInteger(artifact.bytes) || artifact.bytes <= 0) throw new Error("Invalid pinned release metadata");
-const expectedURL = `https://github.com/Jihyung01/stage4d-releases/releases/download/v0.4.0/${filename}`;
+const expectedURL = `https://github.com/Jihyung01/stage4d-releases/releases/download/v${version}/${filename}`;
 if (artifact.url !== expectedURL) throw new Error("Unexpected release URL");
 await mkdir("download", { recursive: true }); await mkdir("reports", { recursive: true });
 const destination = path.resolve("download", filename), temporary = `${destination}.partial`;

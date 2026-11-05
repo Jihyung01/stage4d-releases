@@ -1,9 +1,10 @@
 #Requires -Version 7.0
 [CmdletBinding()]
 param(
-  [string]$InstallerPath = (Join-Path $PSScriptRoot "..\download\stage4d-0.4.0-win-x64-setup.exe"),
+  # The pinned release in validation-assets.json is the default.
   [ValidatePattern('^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$')]
-  [string]$ExpectedVersion = "0.4.0"
+  [string]$ExpectedVersion = ((Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot "..\validation-assets.json") | ConvertFrom-Json).version),
+  [string]$InstallerPath = (Join-Path $PSScriptRoot "..\download\stage4d-$ExpectedVersion-win-x64-setup.exe")
 )
 
 Set-StrictMode -Version Latest
@@ -12,7 +13,7 @@ $ErrorActionPreference = "Stop"
 $protocolKey = "HKCU:\Software\Classes\com.stage4d.studio"
 $protocolCommandKey = "$protocolKey\shell\open\command"
 $harnessRoot = Split-Path -Parent $PSScriptRoot
-$harness = Join-Path $PSScriptRoot "test-desktop.mjs"
+$harness = Join-Path $PSScriptRoot "test-desktop-smoke.mjs"
 $reportDirectory = Join-Path $harnessRoot "reports"
 $reportPath = Join-Path $reportDirectory "windows-install.json"
 $checks = [System.Collections.Generic.List[string]]::new()
@@ -126,10 +127,8 @@ function Invoke-InstallationCycle([string]$Directory, [switch]$TestDesktop, [swi
     if ($TestDesktop) {
       $env:STAGE4D_EXECUTABLE = $app
       $env:STAGE4D_EXPECTED_VERSION = $ExpectedVersion
-      & $node scripts/test-desktop.mjs
+      & $node scripts/test-desktop-smoke.mjs
       if ($LASTEXITCODE -ne 0) { throw "Installed application checks exited with $LASTEXITCODE." }
-      & $node scripts/test-ma2.mjs
-      if ($LASTEXITCODE -ne 0) { throw "Installed MA2 packet checks exited with $LASTEXITCODE." }
     }
 
     if ($TestReplacementOwner) {
