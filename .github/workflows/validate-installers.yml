@@ -28,6 +28,8 @@ jobs:
     env:
       STAGE4D_EXPECTED_ARCH: x64
       STAGE4D_REQUIRE_NATIVE: '1'
+      # Windows runners render WebGL in software; the 3D stage must start there.
+      STAGE4D_REQUIRE_WEBGL: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

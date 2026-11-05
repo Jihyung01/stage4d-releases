@@ -14,7 +14,8 @@ const expectedVersion = process.env.STAGE4D_EXPECTED_VERSION;
 assert.ok(executablePath && expectedVersion, "STAGE4D_EXECUTABLE and STAGE4D_EXPECTED_VERSION are required");
 await mkdir("reports", { recursive: true });
 const profile = await mkdtemp(path.join(tmpdir(), "stage4d-smoke-"));
-const passed = [], errors = [];
+const passed = [], errors = [], notes = [];
+let webgl = null;
 let app = null, execution = null, failure = null;
 try {
   // Hosted runners have no GPU: WebGL runs on Chromium's software rasterizer.
@@ -32,9 +33,16 @@ try {
   const title = await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0]?.getTitle() ?? "");
   assert.ok(title.includes(expectedVersion), `window title '${title}'`);
   passed.push(`window title '${title}'`);
-  await expect(page.locator("canvas").first()).toBeVisible({ timeout: 90000 });
   await expect(page.locator(".script-panel .script-lines .line-main p").first()).toBeVisible({ timeout: 90000 });
-  passed.push("the 3D stage canvas and the sample show's script render");
+  passed.push("the workspace and the sample show's script render");
+  // The 3D stage either starts (its WebGL canvas) or the app shows its own '3D 뷰를 시작할 수 없습니다' notice.
+  const stage = page.locator(".stage-viewport canvas").first(), failed = page.getByText("3D 뷰를 시작할 수 없습니다");
+  await expect.poll(async () => (await failed.count()) > 0 || (await stage.isVisible().catch(() => false)), { timeout: 90000 }).toBe(true);
+  await page.waitForTimeout(2000);
+  webgl = (await failed.count()) > 0 ? "failed" : "started";
+  if (webgl === "started") passed.push("the 3D stage view started (WebGL)");
+  else if (process.env.STAGE4D_REQUIRE_WEBGL === "1") throw new Error("The 3D stage view did not start (WebGL)");
+  else notes.push("The 3D stage view did not start on this runner: the app showed '3D 뷰를 시작할 수 없습니다' (WebGL unavailable). Not a pass.");
   const runtime = await page.evaluate(async () => { const answer = await window.stage4d.runtime.connect(); return { status: answer?.snapshot?.status ?? null, mode: answer?.snapshot?.mode ?? null }; });
   assert.ok(runtime.status, "the runtime answers with a snapshot");
   passed.push(`the desktop runtime process answers (status ${runtime.status}, mode ${runtime.mode})`);
@@ -49,7 +57,7 @@ finally {
   await app?.close().catch(() => {});
   await rm(profile, { recursive: true, force: true }).catch(() => {});
 }
-await writeFile("reports/desktop-smoke.json", JSON.stringify({ success: !failure, version: expectedVersion, execution, passed, errors, failure: failure ? String(failure.stack ?? failure) : null,
+await writeFile("reports/desktop-smoke.json", JSON.stringify({ success: !failure, version: expectedVersion, execution, webgl, passed, notes, errors, failure: failure ? String(failure.stack ?? failure) : null,
   limitations: ["Hosted runner with software rendering; GPU quality, audio and MIDI devices, displays and lighting hardware are not tested", "Direct executable launch does not validate Gatekeeper or SmartScreen approval", "Only launch, render, runtime process and output state are checked; no cue, network or device output is exercised"] }, null, 2));
 if (failure) { console.error(failure); process.exit(1); }
-console.log(passed.map((line) => `✓ ${line}`).join("\n"));
+console.log([...passed.map((line) => `✓ ${line}`), ...notes.map((line) => `! ${line}`)].join("\n"));
