@@ -1,46 +1,54 @@
 {
   "application": "stage4d",
-  "version": "0.9.0-beta.1",
+  "version": "0.9.0-beta.3",
   "channel": "signed",
   "prerelease": true,
-  "generatedAt": "2026-11-05T03:05:46.502Z",
+  "generatedAt": "2026-11-08T10:38:32.054Z",
   "note": "Checksums verify file integrity. They do not prove publisher identity, notarization, or testing on a particular operating system.",
   "artifacts": [
     {
-      "name": "stage4d-0.9.0-beta.1-mac-arm64.dmg",
-      "bytes": 123967791,
-      "sha256": "b0da850fe7ee93c31a29d076018b554508063f5d793b167be2adcc0a24d17daa",
+      "name": "stage4d-0.9.0-beta.3-mac-arm64.dmg",
+      "bytes": 124064526,
+      "sha256": "f26ca77b2d7c46820fa34d0af4c810042121ede9429055882390f540671323b8",
       "platformLabel": "Mac — Apple Silicon",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.1/stage4d-0.9.0-beta.1-mac-arm64.dmg"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.3/stage4d-0.9.0-beta.3-mac-arm64.dmg"
     },
     {
-      "name": "stage4d-0.9.0-beta.1-mac-x64.dmg",
-      "bytes": 131315910,
-      "sha256": "ee5090ca6a9222f72b7e36eb01cf06f20ec08253b04b37e8be8278446026ffd1",
+      "name": "stage4d-0.9.0-beta.3-mac-x64.dmg",
+      "bytes": 131432968,
+      "sha256": "39e76c0813b5a4c6b40cd58a7f1146014405ec6f08e0f38eb231d9f528a27c75",
       "platformLabel": "Mac — Intel",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.1/stage4d-0.9.0-beta.1-mac-x64.dmg"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.3/stage4d-0.9.0-beta.3-mac-x64.dmg"
     },
     {
-      "name": "stage4d-0.9.0-beta.1-win-x64-setup.exe",
-      "bytes": 115927067,
-      "sha256": "8eff598cb34c76ef8c8b4335b2c6832c8ae79e8e488fe95243278f9d63231ff0",
+      "name": "stage4d-0.9.0-beta.3-win-x64-setup.exe",
+      "bytes": 116020948,
+      "sha256": "4d2e9abaa526e4e70cd6f502472b9d852c6a23f6cb295408d8e01831bedb2cd6",
       "platformLabel": "Windows x64",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.1/stage4d-0.9.0-beta.1-win-x64-setup.exe"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.3/stage4d-0.9.0-beta.3-win-x64-setup.exe"
     }
   ],
-  "releaseUrl": "https://github.com/Jihyung01/stage4d-releases/releases/tag/v0.9.0-beta.1",
+  "releaseUrl": "https://github.com/Jihyung01/stage4d-releases/releases/tag/v0.9.0-beta.3",
   "signInRequired": false,
+  "liveSignInRequired": true,
+  "liveEntitlementRequired": true,
+  "access": {
+    "editing": "free-without-account",
+    "rehearsal": "free-without-account",
+    "newLiveRun": "signed-invite-pass-required",
+    "billing": "not-available"
+  },
   "socialSignInAvailable": true,
   "socialSignInProviders": [
     "google"
   ],
   "verification": {
-    "macArm64": "Developer ID 서명·Apple 공증·스테이플을 마친 DMG입니다. Apple Silicon Mac에서 DMG에서 꺼낸 설치 앱의 Gatekeeper 평가(격리 속성 포함)·공증 티켓, 실행·저장·PDF·GO·UDP·네이티브 메뉴 회귀 검사 17항목, 0.5.2에서 저장한 프로젝트를 0.9가 형식 2로 바꾸면서 원본을 보존하는 업그레이드 검사를 통과했습니다. 실제 장비 연결은 확인하지 않았습니다.",
-    "macX64": "Developer ID 서명·Apple 공증·스테이플을 마친 DMG입니다(서명·공증 티켓·Intel 실행 파일 확인). 실제 Intel Mac에서의 실행은 확인하지 않았습니다.",
-    "windowsX64": "설치 파일에 게시자 서명이 없어 SmartScreen 경고가 남습니다. 0.9.0-beta.1의 실제 Windows 설치·실행은 확인하지 않았습니다. 경고 없는 Microsoft Store판은 0.5.0이며 0.9 Store판은 아직 제출 전입니다.",
-    "google": "0.9.0-beta.1 설치판에서 실제 Google 로그인은 확인하지 않았습니다. 실제 소유자 계정 로그인은 0.3.0에서 검증했습니다.",
-    "integrations": "OSC·grandMA2 MSC·Art-Net·sACN·LTC·MTC·음향·영상 출력은 같은 컴퓨터의 시험 수신기·모의 장치와 Wireshark 4.6.9·QLC+ 5.3.0으로만 확인했습니다. 실제 QLab·Eos·콘솔·노드·조명기·오디오·타임코드 장치는 확인하지 않았습니다.",
+    "macArm64": "Developer ID 서명·Apple 공증·스테이플을 마친 DMG입니다. 이 Apple Silicon Mac에서 DMG에서 꺼낸 앱의 격리 속성 포함 Gatekeeper 평가·공증 티켓·실행·이용권 없는 새 라이브 출력 차단을 확인했습니다. 실제 공연 장비 연결은 확인하지 않았습니다.",
+    "macX64": "Developer ID 서명·Apple 공증·스테이플을 마친 Intel용 DMG입니다. 실행 파일 아키텍처와 앱/DMG 서명·공증을 확인했습니다. 별도 Intel 실행 검사는 공개 검증 기록을 참고하세요. 실제 공연장 Intel Mac 검증은 남아 있습니다.",
+    "windowsX64": "Windows x64 설치 EXE입니다. 게시자 코드 서명이 없어 SmartScreen 경고가 발생할 수 있습니다. 별도 Windows 설치·실행 검사는 공개 검증 기록을 참고하세요. 실제 공연장 PC 검증은 남아 있으며 Microsoft Store판과 버전이 다릅니다.",
+    "google": "beta.3의 계정·이용권 공개키 설정은 beta.2와 바이트 단위로 동일합니다. beta.2에서 실제 Google 로그인·초대 이용권을 확인했으며 beta.3에서 실제 로그인 과정을 새로 검증한 것은 아닙니다. 편집·리허설은 계정 없이, 새 라이브 출력은 Google 로그인과 유효한 초대 이용권으로 사용합니다.",
+    "integrations": "현재 빌드에서 로컬 재연결·오래된 피드백·MVR/GDTF 충돌·복구 회귀를 확인했습니다. 2026-11-08 Eos 3.3.10.28 Offline에서 제한된 USITT ASCII 2큐·2디머 가져오기를 확인했습니다. 전체 Eos 왕복·실제 콘솔/장비·현장 LAN 호환성을 검증한 것은 아닙니다. QLab/Eos 앱의 이전 검사와 현장 검증은 구분합니다.",
     "evidence": []
   },
-  "signing": "Mac: Apple 개발자 서명·공증 완료. Windows: 설치 파일 게시자 서명 없음(SmartScreen 경고 가능) · Microsoft Store판 0.5.0 제공."
+  "signing": "Mac: Apple 개발자 서명·공증 완료. Windows: 게시자 코드 서명 없음(SmartScreen 경고 가능). Store 업데이트는 별도입니다."
 }
