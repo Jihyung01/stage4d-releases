@@ -22,8 +22,8 @@
     },
     {
       "name": "stage4d-0.9.0-beta.5-win-x64-setup.exe",
-      "bytes": 115991207,
-      "sha256": "3c4fc78d344ef40e487f84c65e23af2096c84abb85eee737fd7bffb0aafc2e44",
+      "bytes": 116013464,
+      "sha256": "55368b3b930cd9b92940782f13b147873aec8029cc5eb9e40914c08b71323ec8",
       "platformLabel": "Windows x64",
       "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.5/stage4d-0.9.0-beta.5-win-x64-setup.exe"
     }
