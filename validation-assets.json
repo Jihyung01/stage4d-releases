@@ -1,34 +1,34 @@
 {
   "application": "stage4d",
-  "version": "0.9.0-beta.6",
+  "version": "0.9.0-beta.7",
   "channel": "signed",
   "prerelease": true,
-  "generatedAt": "2026-11-21T01:20:31.549Z",
+  "generatedAt": "2026-11-23T07:53:47.935Z",
   "note": "Checksums verify file integrity. They do not prove publisher identity, notarization, or testing on a particular operating system.",
   "artifacts": [
     {
-      "name": "stage4d-0.9.0-beta.6-mac-arm64.dmg",
-      "bytes": 124623653,
-      "sha256": "07bbc4ce92e610303625d7af523998ac745f4bb5c0278bd5a18fbc3cdea4b431",
+      "name": "stage4d-0.9.0-beta.7-mac-arm64.dmg",
+      "bytes": 140973896,
+      "sha256": "b27185081818c6e5ff32c0bc36238c77c63eb917778fa45e51ae7d179cc71995",
       "platformLabel": "Mac — Apple Silicon",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.6/stage4d-0.9.0-beta.6-mac-arm64.dmg"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.7/stage4d-0.9.0-beta.7-mac-arm64.dmg"
     },
     {
-      "name": "stage4d-0.9.0-beta.6-mac-x64.dmg",
-      "bytes": 131877329,
-      "sha256": "709d1dd86ba094a00ddfe2f0b558fd1ae0cd9a178ac7cbbe701f9815f5018481",
+      "name": "stage4d-0.9.0-beta.7-mac-x64.dmg",
+      "bytes": 148222555,
+      "sha256": "b78f978ea9455817365695d96b6f3484827b933fa7a4e8db4b375e021b3c0b3a",
       "platformLabel": "Mac — Intel",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.6/stage4d-0.9.0-beta.6-mac-x64.dmg"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.7/stage4d-0.9.0-beta.7-mac-x64.dmg"
     },
     {
-      "name": "stage4d-0.9.0-beta.6-win-x64-setup.exe",
-      "bytes": 116305963,
-      "sha256": "a52aef4b6ebc40ae34ee3537f03d3416977d93a5d20f207444d9ddf3614ea8a9",
+      "name": "stage4d-0.9.0-beta.7-win-x64-setup.exe",
+      "bytes": 132949041,
+      "sha256": "e7b5b43a2c0f14a576951ff326f597b308a79aeb2b089af42f1dea9b4d4ea893",
       "platformLabel": "Windows x64",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.6/stage4d-0.9.0-beta.6-win-x64-setup.exe"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.7/stage4d-0.9.0-beta.7-win-x64-setup.exe"
     }
   ],
-  "releaseUrl": "https://github.com/Jihyung01/stage4d-releases/releases/tag/v0.9.0-beta.6",
+  "releaseUrl": "https://github.com/Jihyung01/stage4d-releases/releases/tag/v0.9.0-beta.7",
   "signInRequired": false,
   "liveSignInRequired": true,
   "liveEntitlementRequired": true,
@@ -43,9 +43,9 @@
     "google"
   ],
   "verification": {
-    "macArm64": "Developer ID 서명·Apple 공증·스테이플을 마친 DMG입니다. 공개 전에 개발자 Apple Silicon Mac에서 DMG의 앱을 꺼내 새 임시 프로필로 실행해 작업 화면, 실행 엔진 점검(프로세스 1 · 공연 대기, 리허설 실행과 정지), 이용권 없는 장비 출력 차단(시험 수신기로 보낸 것 0), 독립 음향 엔진 연결, PDF 대본 가져오기, 종료 뒤 다시 열었을 때 프로젝트 유지, Electron 퓨즈와 앱 파일 변조 시 실행 거부를 확인했습니다. 로그인, 음향·영상 재생, 실제 공연 장비 연결은 확인하지 않았습니다.",
-    "macX64": "Developer ID 서명·Apple 공증·스테이플을 마친 Intel용 DMG입니다. 공개 전에는 서명·공증·스테이플, 아키텍처(x86_64), Electron 퓨즈, 앱 파일 목록과 판본만 확인했고 실행하지 않았습니다. 실제 Intel Mac 실행은 확인하지 않았습니다.",
-    "windowsX64": "Windows x64 설치 EXE입니다. 게시자 코드 서명이 없어 SmartScreen 경고가 날 수 있습니다. 공개 전에는 이 Mac에서 만든 설치 파일의 내용(앱 파일, Electron 퓨즈, 오픈소스 구성 요소 고지 resources/THIRD_PARTY_NOTICES.txt, 판본)만 확인했고, Windows에서 설치·실행하지 않았습니다. Microsoft Store판은 별도 심사로 버전이 다를 수 있습니다."
+    "macArm64": "Developer ID 서명·Apple 공증·스테이플 완료. Apple Silicon Mac에서 설치본을 열어 새 오프라인 프로필의 시설 기록 328개, 내장 원도면 미리보기와 장면 PDF 첨부를 확인했습니다. 제작팀 자료가 연결된 별도 프로필도 검사했습니다.",
+    "macX64": "Developer ID 서명·Apple 공증·스테이플 완료. Intel x86_64용 앱 구조와 서명·공증, 내장 파일을 검사했습니다. 호스팅 환경의 설치 시험 결과는 릴리스 검증 기록에서 확인할 수 있습니다.",
+    "windowsX64": "Windows x64 직접 설치 파일. 게시자 코드 서명이 없어 SmartScreen 경고가 표시될 수 있습니다. 설치 후보의 프로젝트 파일·오픈소스 고지·체크섬과 내장 도면을 검사했습니다. 호스팅 환경 설치 시험 결과는 릴리스 검증 기록에서 확인할 수 있습니다."
   },
   "signing": "Mac: Apple 개발자 서명·공증 완료. Windows: 설치 파일 게시자 서명 없음(SmartScreen 경고 가능) · Microsoft Store판은 별도 심사입니다."
 }
