@@ -1,34 +1,34 @@
 {
   "application": "stage4d",
-  "version": "0.9.0-beta.7",
+  "version": "0.9.0-beta.8",
   "channel": "signed",
   "prerelease": true,
-  "generatedAt": "2026-11-23T07:53:47.935Z",
+  "generatedAt": "2026-11-24T01:52:31.992726+00:00",
   "note": "Checksums verify file integrity. They do not prove publisher identity, notarization, or testing on a particular operating system.",
   "artifacts": [
     {
-      "name": "stage4d-0.9.0-beta.7-mac-arm64.dmg",
-      "bytes": 140973896,
-      "sha256": "b27185081818c6e5ff32c0bc36238c77c63eb917778fa45e51ae7d179cc71995",
+      "name": "stage4d-0.9.0-beta.8-mac-arm64.dmg",
+      "bytes": 165039468,
+      "sha256": "6f9da454beb36bda379169637b6defe9488d6d86c4a9a0f676dbe7af67ba74d9",
       "platformLabel": "Mac — Apple Silicon",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.7/stage4d-0.9.0-beta.7-mac-arm64.dmg"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.8/stage4d-0.9.0-beta.8-mac-arm64.dmg"
     },
     {
-      "name": "stage4d-0.9.0-beta.7-mac-x64.dmg",
-      "bytes": 148222555,
-      "sha256": "b78f978ea9455817365695d96b6f3484827b933fa7a4e8db4b375e021b3c0b3a",
+      "name": "stage4d-0.9.0-beta.8-mac-x64.dmg",
+      "bytes": 173714706,
+      "sha256": "57dee269917c701b3e2623136ed2750c36bdb442691b10fa809ccafe24dbfe82",
       "platformLabel": "Mac — Intel",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.7/stage4d-0.9.0-beta.7-mac-x64.dmg"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.8/stage4d-0.9.0-beta.8-mac-x64.dmg"
     },
     {
-      "name": "stage4d-0.9.0-beta.7-win-x64-setup.exe",
-      "bytes": 132949041,
-      "sha256": "e7b5b43a2c0f14a576951ff326f597b308a79aeb2b089af42f1dea9b4d4ea893",
+      "name": "stage4d-0.9.0-beta.8-win-x64-setup.exe",
+      "bytes": 156264506,
+      "sha256": "573bd307621abbef414842583f6b4fa90de14a49308286aaa5f8d1183dd172c6",
       "platformLabel": "Windows x64",
-      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.7/stage4d-0.9.0-beta.7-win-x64-setup.exe"
+      "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.8/stage4d-0.9.0-beta.8-win-x64-setup.exe"
     }
   ],
-  "releaseUrl": "https://github.com/Jihyung01/stage4d-releases/releases/tag/v0.9.0-beta.7",
+  "releaseUrl": "https://github.com/Jihyung01/stage4d-releases/releases/tag/v0.9.0-beta.8",
   "signInRequired": false,
   "liveSignInRequired": true,
   "liveEntitlementRequired": true,
@@ -43,9 +43,9 @@
     "google"
   ],
   "verification": {
-    "macArm64": "Developer ID 서명·Apple 공증·스테이플 완료. Apple Silicon Mac에서 설치본을 열어 새 오프라인 프로필의 시설 기록 328개, 내장 원도면 미리보기와 장면 PDF 첨부를 확인했습니다. 제작팀 자료가 연결된 별도 프로필도 검사했습니다.",
-    "macX64": "Developer ID 서명·Apple 공증·스테이플 완료. Intel x86_64용 앱 구조와 서명·공증, 내장 파일을 검사했습니다. 호스팅 환경의 설치 시험 결과는 릴리스 검증 기록에서 확인할 수 있습니다.",
-    "windowsX64": "Windows x64 직접 설치 파일. 게시자 코드 서명이 없어 SmartScreen 경고가 표시될 수 있습니다. 설치 후보의 프로젝트 파일·오픈소스 고지·체크섬과 내장 도면을 검사했습니다. 호스팅 환경 설치 시험 결과는 릴리스 검증 기록에서 확인할 수 있습니다."
+    "macArm64": "Apple 개발자 서명·공증·스테이플 완료. DMG에서 설치한 앱으로 오프라인 공연장 불러오기, PDF 도면 숨김·원본·선 표시, 두 종류의 DWG 축척을 검증했습니다.",
+    "macX64": "Apple 개발자 서명·공증·스테이플 완료. 패키지 내용과 내장 도면 판독기를 검사했습니다. 호스팅 환경 설치 시험은 릴리스 검증 기록에서 확인할 수 있습니다.",
+    "windowsX64": "Windows x64 설치 파일. 게시자 코드 서명이 없어 SmartScreen 경고가 표시될 수 있습니다. 패키지 내용과 내장 도면 판독기를 검사했습니다. 호스팅 환경 설치 시험은 릴리스 검증 기록에서 확인할 수 있습니다."
   },
   "signing": "Mac: Apple 개발자 서명·공증 완료. Windows: 설치 파일 게시자 서명 없음(SmartScreen 경고 가능) · Microsoft Store판은 별도 심사입니다."
 }
