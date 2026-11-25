@@ -3,27 +3,27 @@
   "version": "0.9.0-beta.8",
   "channel": "signed",
   "prerelease": true,
-  "generatedAt": "2026-11-24T01:52:31.992726+00:00",
+  "generatedAt": "2026-11-25T07:41:45.572325+00:00",
   "note": "Checksums verify file integrity. They do not prove publisher identity, notarization, or testing on a particular operating system.",
   "artifacts": [
     {
       "name": "stage4d-0.9.0-beta.8-mac-arm64.dmg",
-      "bytes": 165039468,
-      "sha256": "6f9da454beb36bda379169637b6defe9488d6d86c4a9a0f676dbe7af67ba74d9",
+      "bytes": 165017570,
+      "sha256": "0d245559dffe201a19d2119e4c5b7dbfe74e8293d4920c421255696bcae75478",
       "platformLabel": "Mac — Apple Silicon",
       "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.8/stage4d-0.9.0-beta.8-mac-arm64.dmg"
     },
     {
       "name": "stage4d-0.9.0-beta.8-mac-x64.dmg",
-      "bytes": 173714706,
-      "sha256": "57dee269917c701b3e2623136ed2750c36bdb442691b10fa809ccafe24dbfe82",
+      "bytes": 173727207,
+      "sha256": "5015b5b299cf4db550b34fb9d3e973f5d095f7d64292e0552b80ae77bb915ced",
       "platformLabel": "Mac — Intel",
       "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.8/stage4d-0.9.0-beta.8-mac-x64.dmg"
     },
     {
       "name": "stage4d-0.9.0-beta.8-win-x64-setup.exe",
-      "bytes": 156264506,
-      "sha256": "573bd307621abbef414842583f6b4fa90de14a49308286aaa5f8d1183dd172c6",
+      "bytes": 156275508,
+      "sha256": "09cfdcacc110445870411497a974832d17c04867b0a64b1a6b2a04bfac9f2548",
       "platformLabel": "Windows x64",
       "url": "https://github.com/Jihyung01/stage4d-releases/releases/download/v0.9.0-beta.8/stage4d-0.9.0-beta.8-win-x64-setup.exe"
     }
@@ -43,9 +43,10 @@
     "google"
   ],
   "verification": {
-    "macArm64": "Apple 개발자 서명·공증·스테이플 완료. DMG에서 설치한 앱으로 오프라인 공연장 불러오기, PDF 도면 숨김·원본·선 표시, 두 종류의 DWG 축척을 검증했습니다.",
+    "macArm64": "Apple 개발자 서명·공증 완료. DMG에서 설치한 앱으로 아치 숨김, 날개막 개별 배치, 저장 복원과 내장 도면 판독기를 확인했습니다.",
     "macX64": "Apple 개발자 서명·공증·스테이플 완료. 패키지 내용과 내장 도면 판독기를 검사했습니다. 호스팅 환경 설치 시험은 릴리스 검증 기록에서 확인할 수 있습니다.",
     "windowsX64": "Windows x64 설치 파일. 게시자 코드 서명이 없어 SmartScreen 경고가 표시될 수 있습니다. 패키지 내용과 내장 도면 판독기를 검사했습니다. 호스팅 환경 설치 시험은 릴리스 검증 기록에서 확인할 수 있습니다."
   },
-  "signing": "Mac: Apple 개발자 서명·공증 완료. Windows: 설치 파일 게시자 서명 없음(SmartScreen 경고 가능) · Microsoft Store판은 별도 심사입니다."
+  "signing": "Mac: Apple 개발자 서명·공증 완료. Windows: 설치 파일 게시자 서명 없음(SmartScreen 경고 가능) · Microsoft Store판은 별도 심사입니다.",
+  "buildRevision": "0461f84"
 }
